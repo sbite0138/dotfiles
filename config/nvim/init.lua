@@ -62,5 +62,25 @@ require("lazy").setup({
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight]])
     end,
-  }
+  },
+  {
+    "neovim/nvim-lspconfig",
+    cmd = { "LspInfo", "LspLog" },
+    event = { "BufRead" },
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall" },
+    event = { "WinNew", "WinLeave", "BufRead" },
+    config = true  },
+  { "williamboman/mason-lspconfig.nvim" }
 })
+require("mason").setup()
+require("mason-lspconfig").setup()
+require("mason-lspconfig").setup_handlers {
+  function (server_name)
+    require("lspconfig")[server_name].setup {
+     on_attach = on_attach
+    }
+  end,
+}
