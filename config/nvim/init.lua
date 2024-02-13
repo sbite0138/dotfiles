@@ -1,7 +1,7 @@
 -- basic settings
 local opt = vim.opt
 -- 「※」等の記号を打つと、半角文字と重なる問題がある。「※」などを全角文字の幅で表示するために設定する
-opt.ambiwidth = 'double'
+-- opt.ambiwidth = 'double'
 
 -- 新しい行を改行で追加した時に、ひとつ上の行のインデントを引き継がせます。
 opt.autoindent = true
@@ -47,12 +47,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config=true
-  },
-  {
+ {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
@@ -82,8 +77,20 @@ require("lazy").setup({
     cmd = { "Mason", "MasonInstall" },
     event = { "WinNew", "WinLeave", "BufRead" },
     config = true  },
-  { "williamboman/mason-lspconfig.nvim" }
-})
+  { "williamboman/mason-lspconfig.nvim" },
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      config={border=true}
+  },
+  {'nvim-treesitter/nvim-treesitter'},
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config=true
+  },
+ })
+
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
@@ -93,3 +100,5 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 }
+vim.api.nvim_set_keymap('n', '<Leader>f', [[<Cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<CR>]], { noremap = true, silent = true })
+
