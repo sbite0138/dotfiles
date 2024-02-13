@@ -24,6 +24,15 @@ opt.expandtab = true
 opt.number = true
 opt.termguicolors = true
 
+
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  -- vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- -- delay update diagnostics
+--     update_in_insert = true,
+--   }
+-- )
+opt.signcolumn = 'yes' 
+
 -- lazy nvim and plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
