@@ -188,7 +188,14 @@ require("lazy").setup({{
     {'hrsh7th/cmp-nvim-lsp'}, {'hrsh7th/cmp-nvim-lsp-signature-help'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'},
     {'hrsh7th/cmp-cmdline'}, {'hrsh7th/cmp-nvim-lsp-document-symbol'}, {"f3fora/cmp-spell"}, {"ray-x/cmp-treesitter"},
     -- snippet
-    {'L3MON4D3/LuaSnip'}, {'saadparwaiz1/cmp_luasnip'}}
+    {'L3MON4D3/LuaSnip'}, {'saadparwaiz1/cmp_luasnip'}},
+    {
+    'numToStr/Comment.nvim',
+    opts = {
+        -- add any options here
+    },
+    lazy = false,
+}
 }})
 
 -- require("mason").setup()
